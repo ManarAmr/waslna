@@ -71,9 +71,13 @@ class signup_loginscreen extends StatelessWidget {
 
                         ),
                       onPressed: () {
-                        myApplication.navigateToRemove(
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => signupscreen()),
+                        );
+                      /*  myApplication.navigateToRemove(
                               context,signupscreen()
-                              );
+                              );*/
                       },
                       child: Text('Sign UP',
                         style: TextStyle(
@@ -104,9 +108,13 @@ class signup_loginscreen extends StatelessWidget {
                   shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(15) )
                   ),
                   onPressed: () {
-                     myApplication.navigateToRemove(
+                     Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => loginscreen()),
+                        );
+                    /* myApplication.navigateToRemove(
                               context,loginscreen()
-                              );
+                              );*/
 
                   },
 

@@ -42,6 +42,7 @@ selectImageFromCamera() async{
   Widget build(BuildContext context) {    
     return Scaffold(
       appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
           backgroundColor:Color.fromARGB(255, 254	,198	,40),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -50,6 +51,7 @@ selectImageFromCamera() async{
               Image.asset('assets/bus5.jpeg',
               fit: BoxFit.cover,
               height: 50,),
+              SizedBox(width: 5,),
               Text("WASLNA",
               style: TextStyle(
                 fontSize: 25,
@@ -163,11 +165,13 @@ selectImageFromCamera() async{
                   ),
 
                 SizedBox(height: 10,),
-                  
+//************************************************************************************************************ */                  
                 Text(widget.firstnamedriver +' '+ widget.secondnamedriver,style: TextStyle(fontSize: 30), ),
+
                 Text(widget.emaildriver ,style: TextStyle(fontSize: 15) ),
 
 
+//*************************************************************************************************************** */
                 SizedBox(height: 15,),   
 
   

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:waslna/driver/aboutdrivescreen.dart';
 import 'package:waslna/aboutscreen.dart';
 import 'package:waslna/shared/MyApplication.dart';
@@ -28,6 +29,13 @@ class _logdriverscreenState extends State<logdriverscreen> {
     emailController.addListener(()=> setState(() {
     }));
   }
+  //facebook login
+final Uri _url = Uri.parse('https://www.facebook.com');
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
+  }
+}
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -39,6 +47,7 @@ class _logdriverscreenState extends State<logdriverscreen> {
       },
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
          // leading: BackButton(color: Colors.black),
           backgroundColor:Color.fromARGB(255, 254	,198	,40),
           title: Row(
@@ -229,8 +238,8 @@ class _logdriverscreenState extends State<logdriverscreen> {
                     children: [
                       Text("Dont have An Account ? "),
                       TextButton(onPressed: (){
-                         myApplication.navigateToRemove(
-                  context, signupdriver());
+                         myApplication.navigateTo(
+                  signupdriver(), context,);
                      },
                       child: Text("SIGN UP", style: TextStyle(color: Colors.amber),))
                     ],
@@ -262,8 +271,32 @@ class _logdriverscreenState extends State<logdriverscreen> {
                       ],
                     ),
                       ),
-                  )
-        
+                  ),
+                  SizedBox(height: 20,),
+
+                   ElevatedButton(
+                            onPressed: _launchUrl,
+                            style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                            padding: EdgeInsets.symmetric(
+                             vertical: 5),
+                              backgroundColor: Color.fromARGB(255, 254	,198	,40),
+                            ),
+                          child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/facebook.jpeg',fit: BoxFit.cover,
+                             height: 40),
+                             SizedBox(width: 10,),
+                            Text(" Continue with Facebook ",style: TextStyle(
+                              fontSize: 20,color: Colors.black)
+                              ),
+                    
+                          
+                              ],
+                              
+                              )),
             ],
             
             )),

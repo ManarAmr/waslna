@@ -50,6 +50,9 @@ dependencies:
   path_provider: ^2.0.12
   camera: ^0.10.3
   http: ^0.13.5
+  url_launcher: ^6.1.10
+  intl: ^0.17.0
+  geolocator: ^9.0.2
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +91,7 @@ flutter:
     - assets/girl.jpeg
     - assets/visa.jpeg
     - assets/man.jpeg
+    - assets/facebook.jpeg
 
     
 

@@ -54,6 +54,7 @@ class _signupscreenState extends State<signupscreen> {
       },
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
           backgroundColor:Color.fromARGB(255, 254	,198	,40),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -377,9 +378,9 @@ class _signupscreenState extends State<signupscreen> {
                     children: [
                       Text("Do You have An Account ? "),
                       TextButton(onPressed: (){
-                         myApplication.navigateToRemove(
-                              context,loginscreen()
-                              );;
+                         myApplication.navigateTo(
+                              loginscreen()
+                             ,context );;
                      },
                       child: Text("LOGIN", style: TextStyle(color: Colors.amber),))
                     ],

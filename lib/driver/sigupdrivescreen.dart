@@ -52,6 +52,7 @@ class _signupdriverState extends State<signupdriver> {
       },
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
           backgroundColor:Color.fromARGB(255, 254	,198	,40),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -374,8 +375,8 @@ class _signupdriverState extends State<signupdriver> {
                     children: [
                       Text("Do You have An Account ? "),
                       TextButton(onPressed: (){
-                         myApplication.navigateToRemove(
-                              context,logdriverscreen()
+                         myApplication.navigateTo(
+                              logdriverscreen(),context,
                               );;
                      },
                       child: Text("LOGIN", style: TextStyle(color: Colors.amber),))

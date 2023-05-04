@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:waslna/aboutscreen.dart';
 import 'package:waslna/contactscreen.dart';
 import 'package:waslna/driver/childreninfo.dart';
@@ -13,6 +14,57 @@ class aboutdrivescreen extends StatefulWidget {
   @override
   State<aboutdrivescreen> createState() => _aboutdrivescreenState();
 }
+
+
+enum DialogsAction { yes, cancel }
+class AlertDialogs {
+  static Future<DialogsAction> yesCancelDialog(
+    BuildContext context,
+    //String title,
+    //String body,
+  ) async {
+    final action = await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
+            title: Text("Log out "),
+            content: Text("Do you want to Log out ?"),
+            actions: <Widget>[
+              ElevatedButton(
+                style:  ElevatedButton.styleFrom(
+                backgroundColor:Color.fromARGB(255, 254, 198, 40),),
+                onPressed: () {
+                    Navigator.of(context).pop(DialogsAction.cancel);},
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(
+                       fontWeight: FontWeight.bold),
+                ),
+              ),
+              ElevatedButton(
+                style:  ElevatedButton.styleFrom(
+                backgroundColor:Color.fromARGB(255, 254, 198, 40),),
+                onPressed: () => SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
+                child: Text(
+                  'Yes',
+                  style: TextStyle(
+                       fontWeight: FontWeight.w700),
+                ),
+              )
+            ],
+          );
+        },);
+        return (action != null) ? action : DialogsAction.cancel;
+  }
+}
+
+
+
+
+
+
 class _aboutdrivescreenState extends State<aboutdrivescreen> {
   
   @override
@@ -134,9 +186,20 @@ class _aboutdrivescreenState extends State<aboutdrivescreen> {
               style: TextStyle(
                 fontSize: 20,
               ),),
-                /*onTap: () =>
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context)=>const Help()))*/
+                onTap: ()  async {
+            final action = await AlertDialogs.yesCancelDialog(context,/* 'Logout', 'are you sure ?'*/);
+            if(action == DialogsAction.yes) {
+              bool tappedYes;
+              setState(() => tappedYes = true);
+            } else {
+              bool tappedYes;
+              setState(() => tappedYes = false);
+            }    
+
+
+
+                  
+                }
             ),
           ],
         ),

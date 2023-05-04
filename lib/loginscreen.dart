@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:waslna/aboutscreen.dart';
 import 'package:waslna/main.dart';
 import 'package:waslna/signupscreen.dart';
@@ -29,6 +30,14 @@ class _loginscreenState extends State<loginscreen> {
     emailController.addListener(()=> setState(() {
     }));
   }
+//facebook login
+final Uri _url = Uri.parse('https://www.facebook.com');
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -40,6 +49,7 @@ class _loginscreenState extends State<loginscreen> {
       },
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
          // leading: BackButton(color: Colors.black),
           backgroundColor:Color.fromARGB(255, 254	,198	,40),
           title: Row(
@@ -203,11 +213,11 @@ class _loginscreenState extends State<loginscreen> {
                         onPressed: () {
                         if (myKey.currentState!.validate()) {
                           myApplication.navigateToRemove(
-                              context,aboutscreen(
+                             context,  aboutscreen(
                         //           emaill: emailllController.text,
                           //        password: passwordController.text,
                               )
-                              );
+                             );
                             myApplication.showToast(
                               text: "Logged in succesfully",
                               color: Colors.green);
@@ -231,8 +241,8 @@ class _loginscreenState extends State<loginscreen> {
                     children: [
                       Text("Dont have An Account ? "),
                       TextButton(onPressed: (){
-                         myApplication.navigateToRemove(
-                  context, signupscreen());
+                         myApplication.navigateTo(
+                   signupscreen(),context,);
                      },
                       child: Text("SIGN UP", style: TextStyle(color: Colors.amber),))
                     ],
@@ -247,8 +257,11 @@ class _loginscreenState extends State<loginscreen> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                       onPressed: () {
                       _googleSignIn.signIn().then((value) {
+                        
                         String userName = value!.displayName!;
                         String profilePicute = value.photoUrl!;
+                      /*   myApplication.navigateToRemove(
+                              context,aboutscreen());*/
                         print(userName);
                       });
                     },
@@ -258,23 +271,68 @@ class _loginscreenState extends State<loginscreen> {
                       children: [
                         Image.asset('assets/google.jpeg',fit: BoxFit.cover,
                          height: 50),
+                         SizedBox(width: 30,),
                         Text(" Continue with Google ",style: TextStyle(
                           fontSize: 20
                         ),),
                       ],
                     ),
                       ),
-                  )
-        
-            ],
-            
-            )),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                 /* InkWell(
+                    onTap: (){
+                      _launchUrl;
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color.fromARGB(255, 254	,198	,40),
+                        ),
+                        child:Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/facebook.jpeg',fit: BoxFit.cover,
+                           height: 40),
+                           SizedBox(width: 10,),
+                          Text(" Continue with Facebook ",style: TextStyle(
+                            fontSize: 20
+                          ),),
+                        ],
+                      ),
+                    ),
+                  ),*/
+                     ElevatedButton(
+                            onPressed: _launchUrl,
+                            style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                            padding: EdgeInsets.symmetric(
+                             vertical: 5),
+                              backgroundColor: Color.fromARGB(255, 254	,198	,40),
+                            ),
+                          child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/facebook.jpeg',fit: BoxFit.cover,
+                             height: 40),
+                             SizedBox(width: 10,),
+                            Text(" Continue with Facebook ",style: TextStyle(
+                              fontSize: 20,color: Colors.black)
+                              ),
+                    
+                          
+                              ],
+                              
+                              )),
           
-          
-                ),
+                
               ],
         )),
-    );
+    )])));
   }
 }
 

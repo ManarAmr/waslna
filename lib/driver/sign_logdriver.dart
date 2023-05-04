@@ -70,9 +70,13 @@ class sign_logdriver extends StatelessWidget {
 
                         ),
                       onPressed: () {
-                        myApplication.navigateToRemove(
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>signupdriver()),
+                        );
+                      /*  myApplication.navigateToRemove(
                               context,signupdriver()
-                              );
+                              );*/
                       },
                       child: Text('Sign UP',
                         style: TextStyle(
@@ -103,9 +107,13 @@ class sign_logdriver extends StatelessWidget {
                   shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(15) )
                   ),
                   onPressed: () {
-                     myApplication.navigateToRemove(
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>logdriverscreen()),
+                        );
+                   /*  myApplication.navigateToRemove(
                               context,logdriverscreen()
-                              );
+                              );*/
 
                   },
 
