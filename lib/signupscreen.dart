@@ -22,7 +22,7 @@ class _signupscreenState extends State<signupscreen> {
  // final emailController = TextEditingController();
   String password ='';
   bool isPasswordVisible = false;
-  
+  TextEditingController _email=new TextEditingController();
   
   @override
   Widget build(BuildContext context) {
@@ -63,6 +63,7 @@ class _signupscreenState extends State<signupscreen> {
               Image.asset('assets/bus5.jpeg',
               fit: BoxFit.cover,
               height: 50,),
+              SizedBox(width: 5,),
               Text("WASLNA",
               style: TextStyle(
                 fontSize: 25,
@@ -287,9 +288,58 @@ class _signupscreenState extends State<signupscreen> {
                     ),
                     keyboardType: TextInputType.phone,
                     textInputAction: TextInputAction.done,
-                    maxLength: 11,
+                 //   maxLength: 11,
+                  ),
+
+
+
+                  
+                  SizedBox(
+                    height: 8,
+                  ),
+
+                  TextFormField(
+                    controller: phoneController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "please enter your ID";
+                      } else if (value.length <= 14) {
+                        return "ID must be more than 14 fileds";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 252	,254,178),
+                      hintText: 'ID',
+                         focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            borderSide: BorderSide(color: Color.fromARGB(255, 252	,254,178), ),
+                          ),
+                         enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            borderSide: BorderSide(color:Color.fromARGB(255, 252	,254,178)),
+                          ),
+                       /*border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(color: Colors.green)
+                      ),*/
+                      
+                      
+                    ),
+                    keyboardType: TextInputType.phone,
+                    textInputAction: TextInputAction.done,
+                  //  maxLength: 11,
                   ),
                   
+
+                  SizedBox(
+                    height: 8,
+                  ),
+
+
+
                   TextFormField(
                     controller: addressController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -345,6 +395,7 @@ class _signupscreenState extends State<signupscreen> {
                         if (myKey.currentState!.validate()) {
                           myApplication.navigateToRemove(
                               context,aboutscreen(
+                                
                         //           emaill: emailllController.text,
                           //        password: passwordController.text,
                               )

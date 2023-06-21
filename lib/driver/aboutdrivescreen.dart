@@ -3,11 +3,13 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:waslna/aboutscreen.dart';
 import 'package:waslna/contactscreen.dart';
+import 'package:waslna/driver/driverpage.dart';
 import 'package:waslna/driver/childreninfo.dart';
 import 'package:waslna/driver/profiledriverscreen.dart';
 import 'package:waslna/shared/MyApplication.dart';
 import 'package:waslna/driver/editinformationdriver.dart';
-import 'package:waslna/driver/profiledriverscreen.dart';
+import 'package:waslna/driver/scanner.dart';
+import 'package:waslna/driver/driverpage.dart';
 
 class aboutdrivescreen extends StatefulWidget {
   const aboutdrivescreen({super.key});
@@ -161,6 +163,16 @@ class _aboutdrivescreenState extends State<aboutdrivescreen> {
                         builder: (context)=>childreninfo()));}
             ),
             ListTile(
+              leading: Icon(Icons.qr_code_scanner),
+              title: const Text('Scanner ',
+              style: TextStyle(
+                fontSize: 20,
+              ),),
+                onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context)=>ScannerPage()));}
+            ),
+            ListTile(
               leading: Icon(Icons.phone_in_talk),
               title: const Text('Contacts',
               style: TextStyle(
@@ -285,6 +297,35 @@ class _aboutdrivescreenState extends State<aboutdrivescreen> {
                      
                      ],
                    ),
+
+
+                   Row(
+                     children: [
+                       Icon(Icons.brightness_1,size: 15),
+                       Text("license card ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                       Spacer(),
+                       ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                     primary: Colors.amber,  // Background color
+                     
+                     shape: BeveledRectangleBorder(
+                     borderRadius: BorderRadius.circular(3)
+                      ),
+                      ),
+                    onPressed: () async{
+                    final result = await FilePicker.platform.pickFiles();
+                    if(result==null) return;
+                    final file = result.files.first;
+                    /*openFile(file);*/
+                   },
+                    child: Text('Choose File',style: TextStyle(color: Colors.black),))
+                     
+                     ],
+                   ),
+
+
+
+
                    SizedBox(height: 10,),
                    Row(
                      children: [
@@ -341,7 +382,7 @@ class _aboutdrivescreenState extends State<aboutdrivescreen> {
                             backgroundColor: Colors.amber,
                             ),
                           onPressed: () {
-                            myApplication.navigateTo(childreninfo(), context);
+                            myApplication.navigateTo(HomePage(), context);
                            },
                           child: Text('Done',
                             style: TextStyle(

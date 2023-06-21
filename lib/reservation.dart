@@ -2,6 +2,349 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:waslna/currentlocationscreen.dart';
 import 'package:waslna/mapscreen.dart';
+import 'package:waslna/qrcodescreen.dart';
+import 'package:waslna/shared/MyApplication.dart';
+class Reservationscreen extends StatefulWidget {
+  const Reservationscreen({super.key});
+  
+  @override
+  State<Reservationscreen> createState() => _ReservationscreenState();
+}
+TextEditingController locationInput = TextEditingController();
+
+class _ReservationscreenState extends State<Reservationscreen> {
+ String dropdownvalue = 'Reservation for  1 month';   
+  
+  // List of items in our dropdown menu
+  var items = [    
+    'Reservation for  1 month',
+    'Reservation for 2  month',
+    'Half Term',
+    'One year',
+  ];
+
+  final name = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+         appBar: AppBar(
+              iconTheme: IconThemeData(color: Colors.black),
+              backgroundColor: Color.fromARGB(255, 254, 198, 40),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/bus5.jpeg',
+                    fit: BoxFit.cover,
+                    height: 50,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "WASLNA",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'ZCOOL XiaoWei',
+                        color: Colors.black),
+                  ),
+                ],
+              ),
+            ),
+            body:SingleChildScrollView(
+
+              child: Container(
+                margin: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 25),
+                child:Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                    "Reservation",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                   Text("Enter Full Name :-",
+                      style: TextStyle(
+                        fontSize: 25,
+                      )),
+                  SizedBox(
+                    height: 15,
+                  ), 
+
+                  TextField(
+                    controller: name,
+                    decoration: InputDecoration(
+                      hintText: 'Full Name',
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 252, 254, 178),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 252, 254, 178),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 252, 254, 178)),
+                      ),
+                  ),
+                  ), 
+                 SizedBox(
+                    height: 10,
+                  ),
+
+
+                  SizedBox(height: 10,),
+                 
+                  Text("Age :-",
+                      style: TextStyle(
+                        fontSize: 25,
+                      )),
+                  SizedBox(
+                    height: 15,
+                  ), 
+
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Age',
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 252, 254, 178),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 252, 254, 178),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 252, 254, 178)),
+                      ),
+                  ),
+                  ),
+
+                  SizedBox(height: 10,),
+                 
+                  Text("Number of Children :-",
+                      style: TextStyle(
+                        fontSize: 25,
+                      )),
+                  SizedBox(
+                    height: 15,
+                  ), 
+
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Number of Children',
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 252, 254, 178),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 252, 254, 178),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 252, 254, 178)),
+                      ),
+                  ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text("Reservation periodic  :-",
+                      style: TextStyle(
+                        fontSize: 25,
+                      )),
+                      SizedBox(height: 15,),
+            Container(
+              padding: EdgeInsets.only(left: 10),
+             decoration: BoxDecoration(
+                color:Color.fromARGB(255, 252, 254, 178), //<-- SEE HERE
+                border: Border.all( color: Color.fromARGB(255, 252, 254, 178)  ),
+                 borderRadius: BorderRadius.circular(12),
+                   ),
+              child: DropdownButton(
+                // Initial Value
+                value: dropdownvalue,
+                dropdownColor:Color.fromARGB(255, 252, 254, 178),
+               // Down Arrow Icon
+                icon: const Icon(Icons.keyboard_arrow_down),    
+                // Array list of items
+                items: items.map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                // After selecting the desired option,it will
+                // change button value to selected value
+                onChanged: (String? newValue) { 
+                  setState(() {
+                    dropdownvalue = newValue!;
+                  });
+                },
+              ),
+            ),
+
+
+
+
+                 
+                  SizedBox(height: 10,),
+                 
+                  Text("School Name :-",
+                      style: TextStyle(
+                        fontSize: 25,
+                      )),
+                  SizedBox(
+                    height: 15,
+                  ), 
+
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'School Name',
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 252, 254, 178),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 252, 254, 178),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 252, 254, 178)),
+                      ),
+                  ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  Text("Location ",style: TextStyle(fontSize: 25, ),),
+                    SizedBox(
+                    height: 15,
+                  ),
+                    
+                TextField(
+                    controller: locationInput,
+                    //editing controller of this TextField
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 252, 254, 178),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 252, 254, 178),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 252, 254, 178)),
+                      ),
+                        
+                      prefixIcon: Icon(Icons.location_on_outlined), 
+                      
+                      hintText: "Enter Location ",
+                
+                    ),
+                     readOnly: true,
+                     onTap: () {
+                       Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                return const CurrentLocationScreen();
+              }));   },
+                     ),
+                     SizedBox(height: 20,),
+
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 150,
+                            height: 50,
+                            child: ElevatedButton(onPressed: (){
+                             myApplication.navigateTo(GenerateQrCodePage(), context);
+                             myApplication.showToast(
+                              text: "Data Saved succesfully",
+                              color: Colors.green);
+                              },
+                              style:  ElevatedButton.styleFrom(      
+                                backgroundColor:Color.fromARGB(255, 254, 198, 40),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
+                              ),
+                               child: Text("save",style: TextStyle(fontSize: 30),)),
+                          ),
+
+                          SizedBox(
+                            width: 150,
+                            height: 50,
+                            child: ElevatedButton(onPressed: (){
+                            myApplication.navigateToReplace(Reservationscreen(), context);
+                              },
+                              style:  ElevatedButton.styleFrom(      
+                                backgroundColor:Color.fromARGB(255, 254, 198, 40),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
+                              ),
+                               child: Text("Cancel",style: TextStyle(fontSize: 30),)),
+                          ),
+                        ],
+                      ),
+
+
+
+
+                  
+
+
+
+
+                  ],
+                ) ,
+              ),
+            ),
+
+
+
+         /*   SingleChildScrollView(
+            child: Container(
+                margin: Ed7geInsets.only(left: 20, top: 20, right: 20, bottom: 25),
+                child:
+                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    "Reservation",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),*/
+    
+            
+    
+      ),
+    );
+  }
+}
+
+/*import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:waslna/currentlocationscreen.dart';
+import 'package:waslna/mapscreen.dart';
 import 'package:waslna/paymentscreen.dart';
 import 'package:waslna/shared/MyApplication.dart';
 
@@ -332,4 +675,4 @@ TimeOfDay _time = TimeOfDay.now();
           )),
     );
   }
-}
+}*/

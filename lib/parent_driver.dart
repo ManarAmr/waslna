@@ -18,6 +18,7 @@ class parent_driverscreen extends StatelessWidget {
                 Image.asset('assets/bus5.jpeg',
                 fit: BoxFit.cover,
                 height: 50,),
+                SizedBox(width: 5,),
                 Text("WASLNA",
                 style: TextStyle(
                   fontSize: 25,

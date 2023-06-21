@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:waslna/NotificationScreen.dart';
+//import 'package:waslna/NotificationScreen.dart';
+import 'package:waslna/privacyscreen.dart';
 import 'package:waslna/shared/MyApplication.dart';
+
 class settingscreen extends StatefulWidget {
   const settingscreen({super.key});
 
@@ -190,7 +192,7 @@ class _settingscreenState extends State<settingscreen> {
 
               InkWell(
                 onTap: (){
-                  NotificationScreen();
+              //   myApplication.navigateTo(NotificationScreen(), context);
                 },
                 child: Container(
                   padding: EdgeInsets.only(left: 10,bottom: 5,top: 5),
@@ -200,7 +202,9 @@ class _settingscreenState extends State<settingscreen> {
                     children: [
                       Text("Notification",style: TextStyle(fontSize: 16),),
                       Spacer(),
-                      IconButton( icon:Icon(Icons.arrow_forward_ios_outlined),onPressed: (){myApplication.navigateTo(NotificationScreen(), context); },),
+                      IconButton( icon:Icon(Icons.arrow_forward_ios_outlined),onPressed: (){
+                //        myApplication.navigateTo(NotificationScreen(), context); 
+                        },),
                     ],
                   ),
                 ),
@@ -209,7 +213,9 @@ class _settingscreenState extends State<settingscreen> {
               SizedBox(height: 15,),
 
               InkWell(
-                onTap: (){},
+                onTap: (){
+                  myApplication.navigateTo(privacyscreen(), context);
+                },
                 child: Container(
                   padding: EdgeInsets.only(left: 10,bottom: 5,top: 5),
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
@@ -218,7 +224,9 @@ class _settingscreenState extends State<settingscreen> {
                     children: [
                       Text("Privacy",style: TextStyle(fontSize: 16),),
                       Spacer(),
-                      IconButton( icon:Icon(Icons.arrow_forward_ios_outlined),onPressed: (){},),
+                      IconButton( icon:Icon(Icons.arrow_forward_ios_outlined),onPressed: (){
+                        myApplication.navigateTo(privacyscreen(), context);
+                      },),
                     ],
                   ),
                 ),

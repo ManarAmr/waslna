@@ -7,6 +7,7 @@ import 'package:waslna/settingscreen.dart';
 import 'package:waslna/shared/MyApplication.dart';
 import 'package:waslna/mapscreen.dart';
 import 'package:waslna/NotificationScreen.dart';
+import 'chatscreen.dart';
 class aboutscreen extends StatefulWidget {
   const aboutscreen({super.key});
 
@@ -58,10 +59,6 @@ class AlertDialogs {
   }
 }
 
-
-
-
-
 class _aboutscreenState extends State<aboutscreen> {
   @override
   bool tappedYes = false;
@@ -71,12 +68,12 @@ class _aboutscreenState extends State<aboutscreen> {
             iconTheme: IconThemeData(color: Colors.black),
           backgroundColor:Color.fromARGB(255, 254	,198	,40),
           title: Row(
-            //mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(width: 45,),
               Image.asset('assets/bus5.jpeg',
               fit: BoxFit.cover,
               height: 50,),
+              SizedBox(width: 5,),
               Text("WASLNA",
               style: TextStyle(
                 fontSize: 25,
@@ -86,11 +83,19 @@ class _aboutscreenState extends State<aboutscreen> {
             ],
           ) ,
         ),
-         
 
-         drawer: Drawer(
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingActionButton(onPressed: (){
+          myApplication.navigateTo(Chatscreen(), context);
+        },
+        backgroundColor: Colors.amber,
+        child: Icon(Icons.comment),
+        ),
+        
+        drawer: Drawer(
         backgroundColor:Color.fromARGB(255, 254	,198	,40),
         child: ListView(
+
           // Important: Remove any padding from the ListView.
          // padding: EdgeInsets.zero,
           children:<Widget> [
@@ -158,7 +163,7 @@ class _aboutscreenState extends State<aboutscreen> {
                 fontSize: 20,
               ),),
                 onTap: (){
-                  myApplication.navigateTo(NotificationScreen(), context);
+                    myApplication.navigateTo(NotificationScreen(), context);
                 }
                    
             ),
@@ -204,6 +209,7 @@ class _aboutscreenState extends State<aboutscreen> {
           ],
         ),
       ),
+      
 
             
         body: ListView(
@@ -293,8 +299,10 @@ class _aboutscreenState extends State<aboutscreen> {
                       fontSize: 20,
                       color: Colors.black,
                     ),),
-                      )
-            ),         
+                      ),
+                      
+            ), 
+
              ]),
         )],
         ),

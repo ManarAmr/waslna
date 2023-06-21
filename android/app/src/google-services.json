@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "859679976916",
+    "project_id": "waslna-370917",
+    "storage_bucket": "waslna-370917.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859679976916:android:95ba8e0a2ae37b79cd3a41",
+        "android_client_info": {
+          "package_name": "com.example.waslna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859679976916-jf72vs6pn16s26kpie5s8va2fq24551q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGcR7jaz6T6tU5e7ybMgKwBVoPrgxOGkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859679976916-jf72vs6pn16s26kpie5s8va2fq24551q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

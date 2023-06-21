@@ -20,9 +20,29 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("User current location"),
-        centerTitle: true,
-      ),
+              iconTheme: IconThemeData(color: Colors.black),
+              backgroundColor: Color.fromARGB(255, 254, 198, 40),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/bus5.jpeg',
+                    fit: BoxFit.cover,
+                    height: 50,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "WASLNA",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'ZCOOL XiaoWei',
+                        color: Colors.black),
+                  ),
+                ],
+              ),
+            ),
       body: GoogleMap(
         initialCameraPosition: initialCameraPosition,
         markers: markers,
@@ -33,6 +53,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.amber,
         onPressed: () async {
           Position position = await _determinePosition();
 
